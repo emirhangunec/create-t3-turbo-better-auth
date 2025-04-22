@@ -1,0 +1,8 @@
+feat: refactor authentication handling and update dependencies
+
+- Consolidate imports in auth-showcase component for clarity.
+- Improve session handling in TRPC route by removing unnecessary session fetch.
+- Update getSession function to ensure headers are awaited.
+- Refactor database schema for better readability and maintainability.
+- Upgrade pg dependency to version 8.15.0 for improved performance.
+- Add missing types for pg dependency in devDependencies.
