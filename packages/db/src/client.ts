@@ -8,4 +8,5 @@ if (!process.env.POSTGRES_URL) {
 
 export const db = drizzle(process.env.POSTGRES_URL, {
   schema,
+  casing: "snake_case",
 });
