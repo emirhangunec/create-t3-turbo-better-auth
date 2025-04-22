@@ -30,16 +30,16 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "pg": "^8.15.0",
     "drizzle-orm": "^0.41.0",
     "drizzle-zod": "^0.7.0",
+    "pg": "^8.15.0",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@types/pg": "^8.11.13",
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
+    "@types/pg": "^8.11.13",
     "dotenv-cli": "^8.0.0",
     "drizzle-kit": "^0.30.5",
     "eslint": "catalog:",

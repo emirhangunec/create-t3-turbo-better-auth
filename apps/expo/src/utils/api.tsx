@@ -36,8 +36,6 @@ export const trpc = createTRPCOptionsProxy<AppRouter>({
           headers.set("x-trpc-source", "expo-react")
 
           const token = getToken()
-          console.log("Token: ", token)
-
           if (token) headers.set("Authorization", `Bearer ${token}`)
 
           return Object.fromEntries(headers)
