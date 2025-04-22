@@ -1,51 +1,51 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { redirect } from "next/navigation";
+import { useState } from "react"
+import { redirect } from "next/navigation"
 
-import { authClient } from "@acme/auth/client";
+import { authClient } from "@acme/auth/client"
 
 export function AuthShowcase() {
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session, isPending } = authClient.useSession()
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
 
   const handleSignIn = async () => {
     const res = await authClient.signIn.email({
       email,
       password,
-    });
+    })
 
-    console.log(res);
+    console.log(res)
     if (res.error) {
-      console.error(res.error);
-      return;
+      console.error(res.error)
+      return
     }
 
-    if (res.data.url) redirect(res.data.url);
-  };
+    if (res.data.url) redirect(res.data.url)
+  }
 
   const handleSignUp = async () => {
     const res = await authClient.signUp.email({
       email,
       password,
       name,
-    });
+    })
 
-    console.log(res);
+    console.log(res)
     if (res.error) {
-      console.error(res.error);
-      return;
+      console.error(res.error)
+      return
     }
-  };
+  }
   if (isPending) {
     return (
       <div className="flex flex-col items-center justify-center gap-4">
         <p>Loading...</p>
       </div>
-    );
+    )
   }
   if (session) {
     return (
@@ -58,7 +58,7 @@ export function AuthShowcase() {
           Sign out
         </button>
       </div>
-    );
+    )
   }
 
   return (
@@ -92,5 +92,5 @@ export function AuthShowcase() {
         Sign in
       </button>
     </div>
-  );
+  )
 }

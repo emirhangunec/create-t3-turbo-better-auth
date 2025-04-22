@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import * as React from "react";
+import * as React from "react"
 import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
-} from "@radix-ui/react-icons";
-import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+} from "@radix-ui/react-icons"
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui"
 
-import { cn } from "@acme/ui";
+import { cn } from "@acme/ui"
 
-export const DropdownMenu = DropdownMenuPrimitive.Root;
-export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
-export const DropdownMenuGroup = DropdownMenuPrimitive.Group;
-export const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
-export const DropdownMenuSub = DropdownMenuPrimitive.Sub;
-export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
+export const DropdownMenu = DropdownMenuPrimitive.Root
+export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+export const DropdownMenuGroup = DropdownMenuPrimitive.Group
+export const DropdownMenuPortal = DropdownMenuPrimitive.Portal
+export const DropdownMenuSub = DropdownMenuPrimitive.Sub
+export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
 
 export function DropdownMenuSubTrigger({
   className,
@@ -23,7 +23,7 @@ export function DropdownMenuSubTrigger({
   children,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {
-  inset?: boolean;
+  inset?: boolean
 }) {
   return (
     <DropdownMenuPrimitive.SubTrigger
@@ -37,7 +37,7 @@ export function DropdownMenuSubTrigger({
       {children}
       <ChevronRightIcon className="ml-auto size-4" />
     </DropdownMenuPrimitive.SubTrigger>
-  );
+  )
 }
 
 export function DropdownMenuSubContent({
@@ -52,7 +52,7 @@ export function DropdownMenuSubContent({
       )}
       {...props}
     />
-  );
+  )
 }
 
 export function DropdownMenuContent({
@@ -72,7 +72,7 @@ export function DropdownMenuContent({
         {...props}
       />
     </DropdownMenuPrimitive.Portal>
-  );
+  )
 }
 
 export function DropdownMenuItem({
@@ -80,7 +80,7 @@ export function DropdownMenuItem({
   inset,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {
-  inset?: boolean;
+  inset?: boolean
 }) {
   return (
     <DropdownMenuPrimitive.Item
@@ -91,7 +91,7 @@ export function DropdownMenuItem({
       )}
       {...props}
     />
-  );
+  )
 }
 
 export function DropdownMenuCheckboxItem({
@@ -114,7 +114,7 @@ export function DropdownMenuCheckboxItem({
       </span>
       {children}
     </DropdownMenuPrimitive.CheckboxItem>
-  );
+  )
 }
 
 export function DropdownMenuRadioItem({
@@ -137,7 +137,7 @@ export function DropdownMenuRadioItem({
       </span>
       {children}
     </DropdownMenuPrimitive.RadioItem>
-  );
+  )
 }
 
 export function DropdownMenuLabel({
@@ -145,7 +145,7 @@ export function DropdownMenuLabel({
   inset,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Label> & {
-  inset?: boolean;
+  inset?: boolean
 }) {
   return (
     <DropdownMenuPrimitive.Label
@@ -156,7 +156,7 @@ export function DropdownMenuLabel({
       )}
       {...props}
     />
-  );
+  )
 }
 
 export function DropdownMenuSeparator({
@@ -168,7 +168,7 @@ export function DropdownMenuSeparator({
       className={cn("-mx-1 my-1 h-px bg-muted", className)}
       {...props}
     />
-  );
+  )
 }
 
 export function DropdownMenuShortcut({
@@ -180,5 +180,5 @@ export function DropdownMenuShortcut({
       className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
       {...props}
     />
-  );
+  )
 }

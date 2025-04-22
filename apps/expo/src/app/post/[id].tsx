@@ -1,15 +1,15 @@
-import { SafeAreaView, Text, View } from "react-native";
-import { Stack, useGlobalSearchParams } from "expo-router";
-import { useQuery } from "@tanstack/react-query";
+import { SafeAreaView, Text, View } from "react-native"
+import { Stack, useGlobalSearchParams } from "expo-router"
+import { useQuery } from "@tanstack/react-query"
 
-import { trpc } from "~/utils/api";
+import { trpc } from "~/utils/api"
 
 export default function Post() {
-  const { id } = useGlobalSearchParams();
-  if (!id || typeof id !== "string") throw new Error("unreachable");
-  const { data } = useQuery(trpc.post.byId.queryOptions({ id }));
+  const { id } = useGlobalSearchParams()
+  if (!id || typeof id !== "string") throw new Error("unreachable")
+  const { data } = useQuery(trpc.post.byId.queryOptions({ id }))
 
-  if (!data) return null;
+  if (!data) return null
 
   return (
     <SafeAreaView className="bg-background">
@@ -21,5 +21,5 @@ export default function Post() {
         <Text className="py-4 text-foreground">{data.content}</Text>
       </View>
     </SafeAreaView>
-  );
+  )
 }

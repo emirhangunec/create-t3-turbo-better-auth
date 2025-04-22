@@ -1,10 +1,10 @@
-import { headers } from "next/headers";
+import { headers } from "next/headers"
 
-import { auth } from "./auth";
+import { auth } from "./auth"
 
 export const getSession = async () =>
   auth.api.getSession({
     headers: await headers(),
-  });
+  })
 
-export * from "./auth";
+export * from "./auth"

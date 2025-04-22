@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
 import {
   useMutation,
   useQueryClient,
   useSuspenseQuery,
-} from "@tanstack/react-query";
+} from "@tanstack/react-query"
 
-import type { RouterOutputs } from "@acme/api";
-import { CreatePostSchema } from "@acme/db/schema";
-import { cn } from "@acme/ui";
-import { Button } from "@acme/ui/button";
+import type { RouterOutputs } from "@acme/api"
+import { CreatePostSchema } from "@acme/db/schema"
+import { cn } from "@acme/ui"
+import { Button } from "@acme/ui/button"
 import {
   Form,
   FormControl,
@@ -17,45 +17,45 @@ import {
   FormItem,
   FormMessage,
   useForm,
-} from "@acme/ui/form";
-import { Input } from "@acme/ui/input";
-import { toast } from "@acme/ui/toast";
+} from "@acme/ui/form"
+import { Input } from "@acme/ui/input"
+import { toast } from "@acme/ui/toast"
 
-import { useTRPC } from "~/trpc/react";
+import { useTRPC } from "~/trpc/react"
 
 export function CreatePostForm() {
-  const trpc = useTRPC();
+  const trpc = useTRPC()
   const form = useForm({
     schema: CreatePostSchema,
     defaultValues: {
       content: "",
       title: "",
     },
-  });
+  })
 
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
   const createPost = useMutation(
     trpc.post.create.mutationOptions({
       onSuccess: async () => {
-        form.reset();
-        await queryClient.invalidateQueries(trpc.post.pathFilter());
+        form.reset()
+        await queryClient.invalidateQueries(trpc.post.pathFilter())
       },
       onError: (err) => {
         toast.error(
           err.data?.code === "UNAUTHORIZED"
             ? "You must be logged in to post"
             : "Failed to create post",
-        );
+        )
       },
     }),
-  );
+  )
 
   return (
     <Form {...form}>
       <form
         className="flex w-full max-w-2xl flex-col gap-4"
         onSubmit={form.handleSubmit((data) => {
-          createPost.mutate(data);
+          createPost.mutate(data)
         })}
       >
         <FormField
@@ -85,12 +85,12 @@ export function CreatePostForm() {
         <Button>Create</Button>
       </form>
     </Form>
-  );
+  )
 }
 
 export function PostList() {
-  const trpc = useTRPC();
-  const { data: posts } = useSuspenseQuery(trpc.post.all.queryOptions());
+  const trpc = useTRPC()
+  const { data: posts } = useSuspenseQuery(trpc.post.all.queryOptions())
 
   if (posts.length === 0) {
     return (
@@ -103,37 +103,37 @@ export function PostList() {
           <p className="text-2xl font-bold text-white">No posts yet</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
     <div className="flex w-full flex-col gap-4">
       {posts.map((p) => {
-        return <PostCard key={p.id} post={p} />;
+        return <PostCard key={p.id} post={p} />
       })}
     </div>
-  );
+  )
 }
 
 export function PostCard(props: {
-  post: RouterOutputs["post"]["all"][number];
+  post: RouterOutputs["post"]["all"][number]
 }) {
-  const trpc = useTRPC();
-  const queryClient = useQueryClient();
+  const trpc = useTRPC()
+  const queryClient = useQueryClient()
   const deletePost = useMutation(
     trpc.post.delete.mutationOptions({
       onSuccess: async () => {
-        await queryClient.invalidateQueries(trpc.post.pathFilter());
+        await queryClient.invalidateQueries(trpc.post.pathFilter())
       },
       onError: (err) => {
         toast.error(
           err.data?.code === "UNAUTHORIZED"
             ? "You must be logged in to delete a post"
             : "Failed to delete post",
-        );
+        )
       },
     }),
-  );
+  )
 
   return (
     <div className="flex flex-row rounded-lg bg-muted p-4">
@@ -151,11 +151,11 @@ export function PostCard(props: {
         </Button>
       </div>
     </div>
-  );
+  )
 }
 
 export function PostCardSkeleton(props: { pulse?: boolean }) {
-  const { pulse = true } = props;
+  const { pulse = true } = props
   return (
     <div className="flex flex-row rounded-lg bg-muted p-4">
       <div className="flex-grow">
@@ -177,5 +177,5 @@ export function PostCardSkeleton(props: { pulse?: boolean }) {
         </p>
       </div>
     </div>
-  );
+  )
 }
