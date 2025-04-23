@@ -32,12 +32,14 @@
   "dependencies": {
     "drizzle-orm": "^0.42.0",
     "drizzle-zod": "^0.7.1",
+    "pg": "^8.15.1",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@acme/eslint-config": "workspace:*",
     "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
+    "@types/pg": "^8.11.13",
     "dotenv-cli": "^8.0.0",
     "drizzle-kit": "^0.31.0",
     "eslint": "catalog:",
