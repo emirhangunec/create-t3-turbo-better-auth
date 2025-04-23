@@ -5,6 +5,7 @@ import superjson from "superjson"
 
 import type { AppRouter } from "@acme/api"
 
+import { authClient } from "./auth"
 import { getBaseUrl } from "./base-url"
 import { getToken } from "./session-store"
 
@@ -34,6 +35,9 @@ export const trpc = createTRPCOptionsProxy<AppRouter>({
         headers() {
           const headers = new Map<string, string>()
           headers.set("x-trpc-source", "expo-react")
+
+          const cookie = authClient.getCookie()
+          if (cookie) headers.set("Cookie", cookie)
 
           const token = getToken()
           if (token) headers.set("Authorization", `Bearer ${token}`)
