@@ -2,6 +2,7 @@ import type { BetterAuthOptions } from "better-auth"
 import { expo } from "@better-auth/expo"
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
+import { nextCookies } from "better-auth/next-js"
 import { oAuthProxy } from "better-auth/plugins"
 
 import { db } from "@acme/db/client"
@@ -13,7 +14,7 @@ export const config = {
     provider: "pg",
   }),
   secret: env.AUTH_SECRET,
-  plugins: [oAuthProxy(), expo()],
+  plugins: [oAuthProxy(), expo(), nextCookies()],
   emailAndPassword: {
     enabled: true,
   },
